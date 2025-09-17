@@ -1,16 +1,24 @@
 import 'boxicons/css/boxicons.min.css';
 
 const Header = () => {
-    // Simple Function to toggle mobile menu
+    // Function to toggle mobile menu with smooth animation
     const toggleMobileMenu = () => {
-        // Get mobile menu element
         const mobileMenu = document.getElementById('mobileMenu');
-
-        // If it has the 'hidden' class, remove it . otherwise, add it
+        
         if (mobileMenu.classList.contains('hidden')) {
+            // Show menu
             mobileMenu.classList.remove('hidden');
+            setTimeout(() => {
+                mobileMenu.classList.remove('opacity-0', 'translate-y-[-20px]');
+                mobileMenu.classList.add('opacity-100', 'translate-y-0');
+            }, 10);
         } else {
-            mobileMenu.classList.add('hidden');
+            // Hide menu
+            mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+            mobileMenu.classList.add('opacity-0', 'translate-y-[-20px]');
+            setTimeout(() => {
+                mobileMenu.classList.add('hidden');
+            }, 300);
         }
     };
   return (
@@ -61,7 +69,7 @@ const Header = () => {
         </button>
 
         {/* Mobile Menu - Hidden by default */}
-        <div id='mobileMenu' className='hidden fixed top-16 bottom-0 right-0 left-0 p-5 md:hidden z-40 bg-black bg-opacity-70 backdrop-blur-md'>
+        <div id='mobileMenu' className='hidden fixed top-16 bottom-0 right-0 left-0 p-5 md:hidden z-40 bg-black bg-opacity-70 backdrop-blur-md opacity-0 transform translate-y-[-20px] transition-all duration-300 ease-in-out'>
             <nav className='flex flex-col gap-6 items-center'>
                 <a className='text-base tracking-wider transition-colors hover:text-gray-300 z-50' href="#">
                     COMPANY
